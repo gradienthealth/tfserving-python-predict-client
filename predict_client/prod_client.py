@@ -8,13 +8,14 @@ from predict_client.util import predict_response_to_dict, make_tensor_proto
 
 
 class ProdClient:
-    def __init__(self, host, model_name, model_version):
+    def __init__(self, host, model_name, model_version, options=None):
 
         self.logger = logging.getLogger(self.__class__.__name__)
 
         self.host = host
         self.model_name = model_name
         self.model_version = model_version
+        self.options = options
 
     def predict(self, request_data, request_timeout=10):
 
@@ -25,7 +26,7 @@ class ProdClient:
 
         # Create gRPC client and request
         t = time.time()
-        channel = grpc.insecure_channel(self.host)
+        channel = grpc.insecure_channel(self.host, options=self.options)
         self.logger.debug('Establishing insecure channel took: {}'.format(time.time() - t))
 
         t = time.time()
