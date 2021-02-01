@@ -41,6 +41,7 @@ number_to_dtype_value = {
     8: 'scomplex_val',
     9: 'int64_val',
     10: 'bool_val',
+    17: 'int_val',
     18: 'dcomplex_val',
     19: 'half_val',
     20: 'resource_handle_val'
